@@ -1,36 +1,26 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
-// import './App.css';
+
 
 const HomePage = () => {
-  const navigate = useNavigate();
-
-  const handleLoginClick = () => {
-    navigate('/login');
-  };
-
-  const handleSignupClick = () => {
-    navigate('/signup');
+  const handleProductClick = (productId) => {
+    // Navigate to the product details. Not done that. For now
+    console.log(`Product ${productId} clicked`);
   };
 
   return (
     <div className="home-page">
       <h1>Products</h1>
       <ul className="product-list">
-        <li className="product-item" onClick={handleLoginClick}>
+        <li className="product-item" onClick={() => handleProductClick(1)}>
           Product 1
         </li>
-        <li className="product-item" onClick={handleLoginClick}>
+        <li className="product-item" onClick={() => handleProductClick(2)}>
           Product 2
         </li>
-        <li className="product-item" onClick={handleLoginClick}>
+        <li className="product-item" onClick={() => handleProductClick(3)}>
           Product 3
         </li>
       </ul>
-      <div>
-        <button onClick={handleLoginClick}>Login</button>
-        <button onClick={handleSignupClick}>Sign Up</button>
-      </div>
     </div>
   );
 };
