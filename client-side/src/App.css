@@ -1,49 +1,64 @@
 .navbar {
-  background-color: #333;
+  background-color: #444; 
   padding: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
 }
 
 .navbar-list {
   list-style: none;
   display: flex;
-  justify-content: space-around;
+  justify-content: center; 
   margin: 0;
   padding: 0;
+}
+
+.navbar-item {
+  margin: 0 1rem; 
 }
 
 .navbar-item a {
   color: white;
   text-decoration: none;
+  font-weight: bold; 
 }
 
 .navbar-item a:hover {
   text-decoration: underline;
 }
-
-.app {
-  font-family: Arial, sans-serif;
-  text-align: center;
-}
-/* homePage */
-
+/* HomePage */
 .home-page {
   padding: 20px;
+  max-width: 800px; 
+  margin: auto;
+  text-align: left; 
 }
 
 .product-list {
   list-style-type: none;
   padding: 0;
+  display: flex;
+  flex-wrap: wrap; /* Allow items to wrap to the next line */
+  gap: 20px; /* space between items */
 }
 
 .product-item {
-  padding: 10px;
+  width: calc(33.33% - 20px); /* Three items per row with space between */
+  padding: 20px;
   border: 1px solid #ddd;
-  margin: 5px 0;
+  border-radius: 5px;
+  text-align: center;
   cursor: pointer;
+  transition: background-color 0.3s, box-shadow 0.3s;
+  box-sizing: border-box; /* padding and border in width */
+  height: 150px; /* square */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .product-item:hover {
   background-color: #f0f0f0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
 }
 
 button {
@@ -51,4 +66,132 @@ button {
   padding: 10px 20px;
   font-size: 16px;
   cursor: pointer;
+  background-color: #007bff;
+  color: white; 
+  border: none; 
+  border-radius: 5px; 
+  transition: background-color 0.3s; 
 }
+
+button:hover {
+  background-color: #0056b3; 
+}
+/* Overrall style */
+.app {
+  font-family: 'Arial', sans-serif;
+  text-align: center;
+  color: #333; 
+  background-color: #f8f9fa; 
+  min-height: 100vh; 
+  display: flex;
+  flex-direction: column;
+}
+
+header, footer {
+  padding: 1rem;
+  background-color: #333;
+  color: white;
+}
+
+footer {
+  margin-top: auto; 
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .navbar-list {
+    flex-direction: column; /* Stack items vertically on small screens */
+    align-items: center; 
+  }
+
+  .navbar-item {
+    margin: 0.5rem 0; /* Reduce margin for smaller screens */
+  }
+}
+
+/* Authentication Form Styles */
+.auth-container {
+  max-width: 400px;
+  margin: 2rem auto;
+  padding: 2rem;
+  border: 1px solid #ddd;
+  border-radius: 10px; 
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+}
+
+.auth-container h2 {
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.auth-form input,
+.auth-form select,
+.auth-form textarea {
+  width: 100%;
+  padding: 10px;
+  margin: 0.5rem 0;
+  border: 1px solid #ccc;
+  border-radius: 5px; 
+  font-size: 16px;
+}
+
+.auth-form button {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff; 
+  color: white; 
+  border: none; 
+  border-radius: 5px; 
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s; /*  hover effect */
+  margin-top: 1rem; /* Space above button */
+}
+
+.auth-form button:hover {
+  background-color: #0056b3; 
+}
+
+.auth-form .user-type {
+  margin: 1rem 0;
+  display: flex;
+  align-items: center;
+}
+
+.auth-form .user-type label {
+  font-size: 16px;
+  color: #333;
+  margin-left: 0.5rem;
+}
+
+/* Responsive Adjustments for Auth Forms */
+@media (max-width: 768px) {
+  .auth-container {
+    margin: 1rem;
+    padding: 1.5rem;
+  }
+
+  .auth-form input,
+  .auth-form button {
+    padding: 8px;
+    font-size: 14px;
+  }
+}
+
+.success-message {
+  background-color: #d4edda;
+  color: #155724;
+  padding: 10px;
+  border: 1px solid #c3e6cb;
+  border-radius: 5px;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+
