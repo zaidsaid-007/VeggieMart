@@ -115,6 +115,19 @@ const SignUpPage = () => {
           value={formData.password}
           onChange={handleChange}
           required
+          style={{
+            borderColor: getPasswordStrengthColor(formData.password),
+            animation: getPasswordStrengthAnimation(formData.password)
+          }}
+        />
+        <PasswordStrengthIndicator password={formData.password} /> {/* Use the component here */}
+        <input
+          type="password"
+          name="confirmPassword"
+          placeholder="Confirm Password"
+          value={formData.confirmPassword}
+          onChange={handleChange}
+          required
         />
         <button type="submit">Sign Up</button>
       </form>
@@ -123,3 +136,27 @@ const SignUpPage = () => {
 };
 
 export default SignUpPage;
+const PasswordStrengthIndicator = ({ password }) => {
+  let strength;
+
+  if (password.length < 6) {
+    strength = 'weak';
+  } else if (password.length < 10) {
+    strength = 'medium';
+  } else {
+    strength = 'strong';
+  }
+
+  return (
+    <div 
+      className={`password-strength-indicator ${strength}`}
+      title={
+        strength === 'weak' ? 'Use a stronger password.' :
+        strength === 'medium' ? 'Good, but could be stronger.' :
+        'Strong password!'
+      }
+    >
+      Password Strength: {strength.charAt(0).toUpperCase() + strength.slice(1)}
+    </div>
+  );
+};

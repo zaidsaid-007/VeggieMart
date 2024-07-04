@@ -194,4 +194,52 @@ footer {
   text-align: center;
 }
 
+/* password animation
+.password-strength-indicator {
+  padding: 10px;
+  text-align: center;
+  border-radius: 5px;
+  transition: background-color 0.5s ease-in-out;
+}
 
+.weak {
+  background-color: red;
+  animation: glow-red 1s infinite alternate;
+}
+
+.medium {
+  background-color: orange;
+  animation: glow-orange 1s infinite alternate;
+}
+
+.strong {
+  background-color: green;
+  animation: glow-green 1s infinite alternate;
+}
+
+@keyframes glow-red {
+  from {
+    box-shadow: 0 0 5px #ff0000, 0 0 10px #ff0000, 0 0 15px #ff0000, 0 0 20px #ff0000, 0 0 25px #ff0000, 0 0 30px #ff0000;
+  }
+  to {
+    box-shadow: 0 0 20px #ff0000, 0 0 30px #ff0000, 0 0 40px #ff0000, 0 0 50px #ff0000, 0 0 60px #ff0000;
+  }
+}
+
+@keyframes glow-orange {
+  from {
+    box-shadow: 0 0 5px orange, 0 0 10px orange, 0 0 15px orange, 0 0 20px orange, 0 0 25px orange;
+  }
+  to {
+    box-shadow: 0 0 20px orange, 0 0 30px orange, 0 0 40px orange, 0 0 50px orange;
+  }
+}
+
+@keyframes glow-green {
+  from {
+    box-shadow: 0 0 5px limegreen, 0 0 10px limegreen, 0 0 15px limegreen, 0 0 20px limegreen, 0 0 25px limegreen;
+  }
+  to {
+    box-shadow: 0 0 20px limegreen, 0 0 30px limegreen, 0 0 40px limegreen, 0 0 50px limegreen;
+  }
+} */
