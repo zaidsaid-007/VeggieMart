@@ -1,6 +1,6 @@
-# FRESHCART
+# VeggieMart
 
-**FreshCart - Online Grocery Shop**
+**Veggie Mart - Online Grocery Shop**
 
 ---
 
