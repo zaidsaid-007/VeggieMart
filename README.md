@@ -1,6 +1,6 @@
 # VeggieMart - Online Grocery Shop
 
-![VeggieMart Logo](./logo.png)
+![VeggieMart Logo](./src/logo.png)
 
 ## Introduction
 
