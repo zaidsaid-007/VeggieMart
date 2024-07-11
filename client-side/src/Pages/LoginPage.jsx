@@ -1,37 +1,60 @@
-import React, { useState } from 'react';
-
+import React, { useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { TextField, Button, Typography } from '@mui/material';
+import AuthContext from '../Utils/AuthContext';
 
 const LoginPage = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [formData, setFormData] = useState({ email: '', password: '' });
+  const [errorMessage, setErrorMessage] = useState('');
+  const navigate = useNavigate();
+  const { login } = useContext(AuthContext);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
-    // login logic will be here.
-
-    console.log('Login:', { email, password });
+    // Replace with real authentication logic
+    if (formData.email === 'test@test.com' && formData.password === 'password') {
+      login();
+      navigate('/');
+    } else {
+      setErrorMessage('Invalid credentials');
+    }
   };
 
   return (
     <div className="auth-container">
-      <h2>Login</h2>
+      <Typography variant="h4" component="h2" gutterBottom>
+        Login
+      </Typography>
+      {errorMessage && <div className="error-message">{errorMessage}</div>}
       <form onSubmit={handleSubmit} className="auth-form">
-        <input
+        <TextField
           type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          name="email"
+          label="Email"
+          value={formData.email}
+          onChange={handleChange}
           required
+          fullWidth
+          margin="normal"
         />
-        <input
+        <TextField
           type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          name="password"
+          label="Password"
+          value={formData.password}
+          onChange={handleChange}
           required
+          fullWidth
+          margin="normal"
         />
-        <button type="submit">Login</button>
+        <Button type="submit" variant="contained" color="primary" fullWidth>
+          Login
+        </Button>
       </form>
     </div>
   );
