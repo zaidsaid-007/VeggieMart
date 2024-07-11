@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
+import { TextField, Button, Typography, Radio, RadioGroup, FormControlLabel, FormControl, FormLabel } from '@mui/material';
 
 const SignUpPage = () => {
   const [formData, setFormData] = useState({
@@ -8,155 +8,113 @@ const SignUpPage = () => {
     email: '',
     contact: '',
     address: '',
-    userType: 'buyer', // Default to buyer
+    userType: 'buyer',
     password: '',
+    confirmPassword: ''
   });
-
-  const [successMessage, setSuccessMessage] = useState(''); // State for success message
-  const navigate = useNavigate(); // Hook for navigation
+  const [errorMessage, setErrorMessage] = useState('');
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    setFormData({
-      ...formData,
-      [name]: type === 'checkbox' ? checked : value,
-    });
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
-    // Simulate form 
-    console.log('Signup:', formData);
-    
-    // success message
-    setSuccessMessage('Your account has been created successfully!');
-
-    // Clear form fields
-    setFormData({
-      username: '',
-      email: '',
-      contact: '',
-      address: '',
-      userType: 'buyer',
-      password: '',
-    });
-
-    // Hide success message and redirect after 3 seconds
-    setTimeout(() => {
-      setSuccessMessage('');
-      navigate('/'); // Redirect to homepage
-    }, 3000);
+    // Add your signup logic here (e.g., form validation, API call)
+    if (formData.password === formData.confirmPassword) {
+      // Save user data (e.g., localStorage or API call)
+      navigate('/login');
+    } else {
+      setErrorMessage('Passwords do not match');
+    }
   };
 
   return (
     <div className="auth-container">
-      <h2>Sign Up</h2>
-      {successMessage && <div className="success-message">{successMessage}</div>}
+      <Typography variant="h4" component="h2" gutterBottom>
+        Sign Up
+      </Typography>
+      {errorMessage && <div className="error-message">{errorMessage}</div>}
       <form onSubmit={handleSubmit} className="auth-form">
-        <input
+        <TextField
           type="text"
           name="username"
-          placeholder="Username"
+          label="Username"
           value={formData.username}
           onChange={handleChange}
           required
+          fullWidth
+          margin="normal"
         />
-        <input
+        <TextField
           type="email"
           name="email"
-          placeholder="Email"
+          label="Email"
           value={formData.email}
           onChange={handleChange}
           required
+          fullWidth
+          margin="normal"
         />
-        <input
+        <TextField
           type="text"
           name="contact"
-          placeholder="Contact"
+          label="Contact"
           value={formData.contact}
           onChange={handleChange}
           required
+          fullWidth
+          margin="normal"
         />
-        <input
+        <TextField
           type="text"
           name="address"
-          placeholder="Address"
+          label="Address"
           value={formData.address}
           onChange={handleChange}
           required
+          fullWidth
+          margin="normal"
         />
-        <div className="user-type">
-          <label>
-            <input
-              type="radio"
-              name="userType"
-              value="buyer"
-              checked={formData.userType === 'buyer'}
-              onChange={handleChange}
-            />
-            Buyer
-          </label>
-          <label>
-            <input
-              type="radio"
-              name="userType"
-              value="seller"
-              checked={formData.userType === 'seller'}
-              onChange={handleChange}
-            />
-            Seller
-          </label>
-        </div>
-        <input
+        <FormControl component="fieldset" margin="normal">
+          <FormLabel component="legend">User Type</FormLabel>
+          <RadioGroup
+            name="userType"
+            value={formData.userType}
+            onChange={handleChange}
+          >
+            <FormControlLabel value="buyer" control={<Radio />} label="Buyer" />
+            <FormControlLabel value="seller" control={<Radio />} label="Seller" />
+          </RadioGroup>
+        </FormControl>
+        <TextField
           type="password"
           name="password"
-          placeholder="Password"
+          label="Password"
           value={formData.password}
           onChange={handleChange}
           required
-          style={{
-            borderColor: getPasswordStrengthColor(formData.password),
-            animation: getPasswordStrengthAnimation(formData.password)
-          }}
+          fullWidth
+          margin="normal"
         />
-        <PasswordStrengthIndicator password={formData.password} /> {/* Use the component here */}
-        <input
+        <TextField
           type="password"
           name="confirmPassword"
-          placeholder="Confirm Password"
+          label="Confirm Password"
           value={formData.confirmPassword}
           onChange={handleChange}
           required
+          fullWidth
+          margin="normal"
         />
-        <button type="submit">Sign Up</button>
+        <Button type="submit" variant="contained" color="primary" fullWidth>
+          Sign Up
+        </Button>
       </form>
     </div>
   );
 };
 
 export default SignUpPage;
-const PasswordStrengthIndicator = ({ password }) => {
-  let strength;
-
-  if (password.length < 6) {
-    strength = 'weak';
-  } else if (password.length < 10) {
-    strength = 'medium';
-  } else {
-    strength = 'strong';
-  }
-
-  return (
-    <div 
-      className={`password-strength-indicator ${strength}`}
-      title={
-        strength === 'weak' ? 'Use a stronger password.' :
-        strength === 'medium' ? 'Good, but could be stronger.' :
-        'Strong password!'
-      }
-    >
-      Password Strength: {strength.charAt(0).toUpperCase() + strength.slice(1)}
-    </div>
-  );
-};
